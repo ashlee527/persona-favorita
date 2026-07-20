@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor Karaoke</title>
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="Untitled-1.css">
+</head>
+<body>
+
+    <div class="player">
+
+        <!-- Portada -->
+        <img src="C:\Users\asop2\OneDrive\Documentos\mi vida entera\Mi Vida Entera 🖤.jpg" alt="Portada del álbum" class="cover" id="cover">
+
+        <!-- Información -->
+        <div class="info">
+            <h1>PARA MI PERSONA FAVORITA</h1>
+            <h2>FELIZ PRIMER MES, TE AMO</h2>
+        </div>
+
+        <!-- Letra -->
+        <div id="lyrics" class="lyrics">
+            Presiona ▶ para comenzar
+        </div>
+
+        <!-- Audio -->
+        <audio id="audio" controls preload="metadata">
+            <source src="C:\Users\asop2\OneDrive\Documentos\mi vida entera\Morat - Mi Vida Entera (Live)  Vevo X.mp3.mpeg" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+
+        <!-- Tiempo -->
+        <div class="time">
+            <span id="currentTime">00:00</span>
+            <span id="duration">00:00</span>
+        </div>
+
+    </div>
+
+    <script>
+        const audio = document.getElementById("audio");
+        const currentTime = document.getElementById("currentTime");
+        const duration = document.getElementById("duration");
+
+        function formatoTiempo(segundos) {
+            const min = Math.floor(segundos / 60);
+            const sec = Math.floor(segundos % 60);
+            return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+        }
+
+        audio.addEventListener("loadedmetadata", () => {
+            duration.textContent = formatoTiempo(audio.duration);
+        });
+
+        audio.addEventListener("timeupdate", () => {
+            currentTime.textContent = formatoTiempo(audio.currentTime);
+        });
+    </script>
+
+    <!-- Script del karaoke -->
+    <script src="script.js"></script>
+
+</body>
+</html>
